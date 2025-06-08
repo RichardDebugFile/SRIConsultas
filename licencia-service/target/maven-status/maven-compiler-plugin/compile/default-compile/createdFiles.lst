@@ -1,0 +1,5 @@
+demo\sri\licencia\LicenciaServiceApplication.class
+demo\sri\licencia\client\AntClient.class
+demo\sri\licencia\controller\LicenciaController.class
+demo\sri\licencia\config\CacheConfig.class
+demo\sri\licencia\service\LicenciaService.class

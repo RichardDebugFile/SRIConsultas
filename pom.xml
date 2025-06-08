@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>demo.sri</groupId>
+  <artifactId>demo-sri</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <!-- ====================
+       Version matrix
+       Boot 3.3.x  ↔  Spring Cloud 2023.0.x («Leyton»)
+       2023.0.4 trae Gateway 4.1.5 basado en Spring Framework 6.1.
+       ==================== -->
+  <properties>
+    <java.version>17</java.version>
+    <spring.boot.version>3.3.0</spring.boot.version>
+    <spring.cloud.version>2023.0.4</spring.cloud.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+  </properties>
+
+  <!-- Bills‑of‑materials para alinear versiones -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring.cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- work‑around: forzar gateway‑server 4.1.5 -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-gateway-server</artifactId>
+        <version>4.1.5</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- No hay dependencias comunes (quitamos Lombok) -->
+  <dependencies/>
+
+  <build>
+    <plugins>
+      <!-- Compiler plugin para todos los módulos -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <inherited>true</inherited>
+        <configuration>
+          <release>${java.version}</release>
+          <encoding>UTF-8</encoding>
+          <!-- Expone nombres de parámetros → evita IllegalArgumentException de WebFlux -->
+          <parameters>true</parameters>
+        </configuration>
+      </plugin>
+
+      <!-- Spring Boot plugin: run, build‑image, repackage, etc. -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.boot.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <modules>
+    <module>common-model</module>
+    <module>api-gateway</module>
+    <module>contribuyente-service</module>
+    <module>vehiculo-service</module>
+    <module>licencia-service</module>
+  </modules>
+</project>

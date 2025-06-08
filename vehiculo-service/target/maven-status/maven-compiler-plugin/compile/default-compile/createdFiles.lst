@@ -1,0 +1,7 @@
+demo\sri\vehiculo\config\CacheConfig.class
+demo\sri\vehiculo\controller\VehiculoController.class
+demo\sri\vehiculo\VehiculoServiceApplication.class
+demo\sri\vehiculo\client\SriVehiculoClient.class
+demo\sri\vehiculo\controller\DebugController.class
+demo\sri\vehiculo\service\VehiculoService.class
+demo\sri\vehiculo\config\WebClientConfig.class

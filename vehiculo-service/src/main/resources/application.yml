@@ -1,0 +1,12 @@
+server:
+  port: 8082
+spring:
+  redis:
+    host: redis-11441.c13.us-east-1-3.ec2.redns.redis-cloud.com
+    port: 11441
+    password: 3f18HkN8zNvKRWWVyCTfYDMgvEK8VB4f
+    timeout: 5000
+  cache:
+    type: redis
+    redis:
+      time-to-live: 86400000
